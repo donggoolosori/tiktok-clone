@@ -3,7 +3,15 @@ import "./Video.css";
 import VideoSidebar from "./VideoSidebar";
 import VideoFooter from "./VideoFooter";
 
-const Video = () => {
+const Video = ({
+  url,
+  channel,
+  description,
+  song,
+  likes,
+  shares,
+  messages,
+}) => {
   const videoRef = useRef(null);
   const [playing, setPlaying] = useState(false);
   const handleVideoPress = () => {
@@ -24,10 +32,10 @@ const Video = () => {
         className="video__player"
         loop
         ref={videoRef}
-        src="https://user-images.githubusercontent.com/53213397/103125802-ac6e0c80-46cf-11eb-9cac-2ed4f4caf7e7.mp4"
+        src={url}
       ></video>
-      <VideoFooter />
-      <VideoSidebar />
+      <VideoFooter channel={channel} description={description} song={song} />
+      <VideoSidebar likes={likes} shares={shares} messages={messages} />
     </div>
   );
 };
