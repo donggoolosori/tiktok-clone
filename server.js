@@ -2,20 +2,17 @@ import express from "express";
 import mongoose from "mongoose";
 import data from "./data.js";
 import TikTok from "./models/TikTok.js";
+import cors from "cors";
 const connection_url =
   "mongodb+srv://admin:TKxxzZU0OfltW9md@cluster0.btcwz.mongodb.net/tiktok?retryWrites=true&w=majority";
 
 // app config
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // middlewares
 app.use(express.json());
-app.use((req, res, next) => {
-  res.setHeaders("Access-Control-Allow-Origin", "*"),
-    res.setHeaders("Access-Control-Allow-Headers", "*"),
-    next();
-});
+app.use(cors());
 
 // DB config
 mongoose.connect(connection_url, {
